@@ -16,18 +16,12 @@ list_of_files = [
     f"src/{project_name}/pipeline/__init__.py",
     f"src/{project_name}/entity/__init__.py",
     f"src/{project_name}/constants/__init__.py",
-    "data/raw/.gitkeep",
-    "data/processed/.gitkeep",
-    "models/.gitkeep",
-    "notebooks/trials.ipynb",
-    "tests/__init__.py",
-    "tests/test_data_loading.py",
-    "config.yaml",
+    "config/config.yaml",
     "dvc.yaml",
     "params.yaml",
     "requirements.txt",
     "setup.py",
-    "src/main.py",
+  
 ]
 
 for filepath in list_of_files:
