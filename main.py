@@ -22,7 +22,7 @@ if __name__ == '__main__':
         STAGE_NAME = "Data Preprocessing stage"
         logger.info(f">>>>>> Stage {STAGE_NAME} started <<<<<<")
         data_preprocessing_obj = DataPreprocessorPipeline()
-        data_ingestion_obj.main()  # Assuming this method orchestrates the data ingestion stage
+        data_preprocessing_obj.main()  # Assuming this method orchestrates the data ingestion stage
         logger.info(f">>>>>> Stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 
         # # KNN Model Training Stage
