@@ -29,7 +29,7 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
-
+    
     def get_data_preprocessing_config(self) -> DataPreprocessingConfig:
         config = self.config['data_preprocessing']
         params = self.params['preprocessing']
