@@ -21,5 +21,7 @@ class DataPreprocessorPipeline:
         X_pca = data_preprocessor.preprocess_and_apply_pca()
 
         # Save the fitted preprocessor and PCA model for later use
-        data_preprocessor.save(subdir_name="data_preprocessor")
+        data_preprocessor.save(subdir_name="preprocessor")
+
+        return X_pca
 
