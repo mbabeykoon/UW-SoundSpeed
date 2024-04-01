@@ -8,7 +8,7 @@ import json
 import joblib
 from ensure import ensure_annotations
 from uwsoundspeed import logger  # Ensure this logger is properly configured for your deployment
-from uwsoundspeed.entity.config_entity import (DataIngestionConfig,PreprocessingConfig)
+from uwsoundspeed.entity.config_entity import (DataIngestionConfig,DataPreprocessingConfig)
 # from uwsoundspeed.entity.config_entity import (DataIngestionConfig,PrepareBaseModelConfig,PreprocessingConfig,PCAConfig,ModelConfig,GridSearchConfig,TrainTestSplitConfig)
 import pickle
 

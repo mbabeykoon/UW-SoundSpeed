@@ -1,8 +1,8 @@
 from uwsoundspeed.config.configuration import ConfigurationManager
 from uwsoundspeed.components.data_ingestion import DataIngestion
-from uwsoundspeed import logger
+from uwsoundspeed.logging import logger
 
-STAGE_NAME = "Data Ingestion stage"
+
 
 class DataIngestionTrainingPipeline:
     def __init__(self):
@@ -14,16 +14,3 @@ class DataIngestionTrainingPipeline:
         data_ingestion = DataIngestion(config=data_ingestion_config)
         data_ingestion.handle_local_data()
         data_ingestion.extract_zip_file()
-
-
-
-
-if __name__ == '__main__':
-    try:
-        logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
-        obj = DataIngestionTrainingPipeline()
-        obj.main()
-        logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
-    except Exception as e:
-        logger.exception(e)
-        raise e

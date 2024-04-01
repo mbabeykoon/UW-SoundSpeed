@@ -5,27 +5,25 @@ preprocessing:
     - SSS
     - SST
     - z
-  numerical_transformer:
-    imputer_strategy: median
-    scaler: StandardScaler
+  # numerical_transformer:
+  #   imputer_strategy: median
+  #   scaler: StandardScaler
   categorical_features:
     - Month
-  categorical_transformer:
-    imputer_strategy: most_frequent
-    onehot: OneHotEncoder
-    handle_unknown: ignore
+  # categorical_transformer:
+  #   imputer_strategy: most_frequent
+  #   onehot: OneHotEncoder
+  #   handle_unknown: ignore
+  pca_n_components: 0.90
 
-pca:
-  n_components: 0.90
+# model:
+#   KNeighborsRegressor:
+#     n_neighbors: [1, 2]  # Range of k to try
 
-model:
-  KNeighborsRegressor:
-    n_neighbors: [1, 2]  # Range of k to try
+# grid_search:
+#   cv: 2
+#   scoring: neg_mean_squared_error
 
-grid_search:
-  cv: 2
-  scoring: neg_mean_squared_error
-
-train_test_split:
-  test_size: 0.2
-  random_state: 42
+# train_test_split:
+#   test_size: 0.2
+#   random_state: 42
