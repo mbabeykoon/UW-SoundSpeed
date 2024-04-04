@@ -3,20 +3,22 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  source_URL: D:\Nik\SSP\Data\woce_train_data.zip
+  # source_URL: D:\Nik\SSP\Data\woce_train_data.zip #for lab
+  source_URL: D:\Resarch\2024\SoundData\raw.zip
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion
 
 data_preprocessing:
   root_dir: artifacts/data_transformation
-  data_path: artifacts/data_ingestion/woce_train_data/complete_dataset.pkl
+  # data_path: artifacts/data_ingestion/woce_train_data/complete_dataset.pkl #for lab
+  data_path: artifacts/data_ingestion/raw/complete_dataset.pkl
 
 
-# prepare_knn_model:
-#   root_dir: artifacts/prepare_knn_model
-#   data_file_path: artifacts/data_ingestion/raw/complete_dataset_sample.pkl
-#   knn_model_path: artifacts/prepare_knn_model/knn_model.h5
-#   # updated_base_model_path: artifacts/prepare_base_model/base_model_updated.h5
+prepare_knn_model:
+  root_dir: artifacts/prepare_knn_model
+  data_file_path: artifacts/data_ingestion/raw/complete_dataset.pkl
+  knn_model_path: artifacts/prepare_knn_model/knn_model.h5
+  # updated_base_model_path: artifacts/prepare_base_model/base_model_updated.h5
 
 
 
