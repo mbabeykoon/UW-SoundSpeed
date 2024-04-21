@@ -1,7 +1,10 @@
 from box.exceptions import BoxValueError
 from uwsoundspeed.constants import *
 from uwsoundspeed.utils.common import read_yaml, create_directories
-from uwsoundspeed.entity.config_entity import (DataIngestionConfig,DataPreprocessingConfig)
+from uwsoundspeed.entity.config_entity import (DataIngestionConfig,PrepareBaseModelConfig,PreprocessingConfig,PCAConfig,ModelConfig,GridSearchConfig,TrainTestSplitConfig) #Dat
+from uwsoundspeed.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
+from uwsoundspeed.utils.common import read_yaml, create_directories
+
 
 class ConfigurationManager:
     def __init__(
@@ -30,20 +33,58 @@ class ConfigurationManager:
 
         return data_ingestion_config
     
-    def get_data_preprocessing_config(self) -> DataPreprocessingConfig:
-        config = self.config['data_preprocessing']
-        params = self.params['preprocessing']
 
+
+    def get_preprocessing_config(self) -> PreprocessingConfig:
+        config = self.params.preprocessing 
+        return PreprocessingConfig(
+            numerical_features=config.numerical_features,
+            numerical_transformer=config.numerical_transformer,
+            categorical_features=config.categorical_features,
+            categorical_transformer=config.categorical_transformer
+
+           
+        )
+    
+    
+    def get_pca_config(self) -> PCAConfig:
+        pca= self.params.preprocessing
+        return PCAConfig(n_components=pca.pca_n_components)
+
+    def get_model_config(self) -> ModelConfig:
+        model = self.params.model
+        return ModelConfig(KNeighborsRegressor=model['KNeighborsRegressor'])
+
+    def get_grid_search_config(self) -> GridSearchConfig:
+        grid_search = self.params.grid_search
+        return GridSearchConfig(cv=grid_search['cv'], scoring=grid_search['scoring'])
+
+    def get_train_test_split_config(self) -> TrainTestSplitConfig:
+        split_config = self.params.train_test_split
+        return TrainTestSplitConfig(test_size=split_config['test_size'], random_state=split_config['random_state'])
+    
+
+    def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
+    # Assuming 'prepare_knn_model' contains all necessary configuration paths and settings
+        config = self.config['prepare_knn_model']
+        
+        # Create necessary directories specified in the configuration
         create_directories([Path(config['root_dir'])])
 
-        data_preprocessing_config = DataPreprocessingConfig(
+        # Construct and return the PrepareBaseModelConfig object with appropriate paths and settings
+        prepare_base_model_config = PrepareBaseModelConfig(
             root_dir=Path(config['root_dir']),
-            data_path=Path(config['data_path']),
-            numerical_features=params['numerical_features'],
-            # numerical_transformer=params['numerical_transformer'],
-            categorical_features=params['categorical_features'],
-            # categorical_transformer=params['categorical_transformer'],
-            pca_n_components=params['pca_n_components']
+            data_file_path=Path(config['data_file_path']),
+            preprocessing=self.get_preprocessing_config(),
+            pca=self.get_pca_config(),
+            model=self.get_model_config(),
+            grid_search=self.get_grid_search_config(),
+            train_test_split=self.get_train_test_split_config(),
+            knn_model_path=Path(config['knn_model_path'])
         )
 
-        return data_preprocessing_config
+        return prepare_base_model_config
+    
+
+    
+

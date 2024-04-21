@@ -24,4 +24,20 @@ class DataPreprocessorPipeline:
         data_preprocessor.save(subdir_name="preprocessor")
 
         return X_pca
+    
+if __name__ == '__main__':
+
+    try:
+
+        # Data Preprocessing Stage
+        STAGE_NAME = "Data Preprocessing stage"
+        logger.info(f">>>>>> Stage {STAGE_NAME} started <<<<<<")
+        data_preprocessing_obj = DataPreprocessorPipeline()
+        data_preprocessing_obj.main()  # Assuming this method orchestrates the data ingestion stage
+        logger.info(f">>>>>> Stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+
+    except Exception as e:
+        logger.exception(e)
+        raise e
+
 
